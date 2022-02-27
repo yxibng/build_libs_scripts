@@ -8,3 +8,6 @@
 2. m1 mac 交叉编译生成 x86_64 ffmpeg, 参考了 https://python.iitter.com/other/241151.html
 3. 官方的编译说明 https://trac.ffmpeg.org/wiki/CompilationGuide
 4. [ffmpeg-on-apple-silicon](https://github.com/ssut/ffmpeg-on-apple-silicon)
+
+# 交叉编译 iOS 平台的ffmpeg 静态库
+参考： https://github.com/kewlbear/FFmpeg-iOS-build-script
