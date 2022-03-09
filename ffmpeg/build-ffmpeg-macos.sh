@@ -3,6 +3,11 @@ SCRIPT_DIR="$(
     pwd
 )"
 
+
+# 是否开启调试
+DEBUG=false
+
+# 静态库输出目录
 OUTPUT=$SCRIPT_DIR/ffmpeg-macos
 
 #clean last build
@@ -13,22 +18,27 @@ fi
 #make output dir
 mkdir -p $OUTPUT
 
-
-
-
 # absolute path to x264 library
-X264=./x264-macos
+X264=./x264-macos/lipo
 
 SYS_ROOT=`xcrun --sdk macosx --show-sdk-path`
 
-CONFIGURE_FLAGS="--disable-debug \
+
+if [ $DEBUG = true ]; then
+# 添加调试符号
+CONFIGURE_FLAGS="--enable-debug=3 --disable-optimizations --disable-stripping"
+else
+# 不支持调试
+CONFIGURE_FLAGS="--disable-debug"
+fi
+
+CONFIGURE_FLAGS="${CONFIGURE_FLAGS} \
 				--enable-static \
 				--disable-programs \
 				--disable-symver \
 				--disable-htmlpages \
 				--disable-manpages \
 				--disable-podpages \
-				--disable-avdevice \
 				--disable-cuda \
 				--disable-cuvid \
 				--disable-nvenc \
@@ -75,18 +85,22 @@ do
 	make install
 done
 
-# lipo
+if [ $? != 0 ]; then 
+	echo "build static lib failed"
+	exit 1
+fi
 
+# lipo
 echo "make universal ffmpeg libs for macos with lipo"
 
 X64_DIR="$OUTPUT/x86_64"
 ARM64_DIR="$OUTPUT/arm64"
 
-LIPO_DIR="$SCRIPT_DIR/lipo"
+LIPO_DIR="$OUTPUT/lipo"
 
 cp -R $X64_DIR $LIPO_DIR
 
-LIBS=`ls $LIPO_DIR/lib`
+LIBS=`ls $LIPO_DIR/lib | grep "\.a"`
 
 for name in $LIBS 
 do 
