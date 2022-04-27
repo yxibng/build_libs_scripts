@@ -27,7 +27,7 @@ do
     mkdir -p $Output
 
     SYS_ROOT=`xcrun --show-sdk-path`
-    CFLAGS="-arch $arch -fvisibility=hidden  -fembed-bitcode -mmacos-version-min=10.12"
+    CFLAGS="-arch $arch -fvisibility=hidden  -fembed-bitcode -mmacosx-version-min=10.12"
 
     make clean
 
