@@ -22,7 +22,7 @@ SCRIPT_DIR="$(
 
 for arch in arm64 x86_64 
 do 
-    CONFIGURE_FLAGS="--enable-static --enable-pic --disable-cli --disable-asm"
+    CONFIGURE_FLAGS="--enable-static --enable-pic --disable-cli"
     Output="$SCRIPT_DIR/x264-macos/$arch"
     mkdir -p $Output
 
