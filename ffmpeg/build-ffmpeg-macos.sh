@@ -44,7 +44,7 @@ CONFIGURE_FLAGS="${CONFIGURE_FLAGS} \
 				--disable-lzma \
                 --disable-doc --enable-pic --disable-asm --disable-inline-asm"
 
-CFLAGS="-fvisibility=hidden -fembed-bitcode -mmacosx-version-min=10.12"
+CFLAGS="-fvisibility=hidden  -mmacosx-version-min=10.12"
 
 #test if link to x264
 if [ -f $X264 ]; then

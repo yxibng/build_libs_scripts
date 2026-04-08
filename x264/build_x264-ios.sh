@@ -29,7 +29,7 @@ build_for_iphone() {
 		PREFIX=$PRODUCTS_DIR/iphoneos/$ARCH
 		[ -e $PREFIX ] && rm -rf $PREFIX
 		mkdir -p $PREFIX
-		CFLAGS="-arch $ARCH -fembed-bitcode -mios-version-min=9.0"
+		CFLAGS="-arch $ARCH  -mios-version-min=9.0"
 		LDFLAGS="$CFLAGS"
 		ASFLAGS="$CFLAGS"		
 		./configure $CONFIG \
@@ -65,7 +65,7 @@ build_for_simulator() {
 		PREFIX=$PRODUCTS_DIR/iphonesimulator/$ARCH
 		[ -e $PREFIX ] && rm -rf $PREFIX
 		mkdir -p $PREFIX
-		CFLAGS="-arch $ARCH -fembed-bitcode -mios-simulator-version-min=9.0"
+		CFLAGS="-arch $ARCH  -mios-simulator-version-min=9.0"
 		LDFLAGS="$CFLAGS"
 		ASFLAGS="$CFLAGS"		
 		./configure $CONFIG \
