@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)";
 
-ARCHS_IPHONEOS="arm64 armv7"
+ARCHS_IPHONEOS="arm64"
 ARCHS_SIMULATOR="arm64 x86_64"
 
 PRODUCTS_DIR=$SCRIPT_DIR/products
@@ -29,7 +29,7 @@ build_for_iphone() {
 		PREFIX=$PRODUCTS_DIR/iphoneos/$ARCH
 		[ -e $PREFIX ] && rm -rf $PREFIX
 		mkdir -p $PREFIX
-		CFLAGS="-arch $ARCH  -mios-version-min=9.0"
+		CFLAGS="-arch $ARCH  -mios-version-min=12.0"
 		LDFLAGS="$CFLAGS"
 		ASFLAGS="$CFLAGS"		
 		./configure $CONFIG \
@@ -65,7 +65,7 @@ build_for_simulator() {
 		PREFIX=$PRODUCTS_DIR/iphonesimulator/$ARCH
 		[ -e $PREFIX ] && rm -rf $PREFIX
 		mkdir -p $PREFIX
-		CFLAGS="-arch $ARCH  -mios-simulator-version-min=9.0"
+		CFLAGS="-arch $ARCH  -mios-simulator-version-min=12.0"
 		LDFLAGS="$CFLAGS"
 		ASFLAGS="$CFLAGS"		
 		./configure $CONFIG \
